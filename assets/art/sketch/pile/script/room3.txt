@@ -1,0 +1,126 @@
+// room script file
+
+function room_AfterFadeIn()
+{
+  if (hasKilledMouse == false) {
+    
+    if (hasTalkedToFox == false){
+      cEgo.SayAt(400, 600, 400, "That is possibly the strangest looking fox I've ever seen.");
+      cFoxEye.SayAt(500, 200, 400, "Don't talk about me like I'm not here.");
+      cFoxEye.SayAt(500, 200, 400, "That's very rude, you know.");
+      cEgo.SayAt(400, 600, 400, "And it talks too.");
+      cEgo.SayAt(400, 600, 400, "I think I can tell what kind of day this is going to be.");
+      cEgo.SayAt(400, 600, 400, "What brings you to a second story prison window ledge?");
+      cFoxEye.SayAt(500, 200, 400, "Fascination with the justice system of this particular plane.");
+      cEgo.SayAt(400, 600, 400, "...");
+      cEgo.SayAt(400, 600, 400, "What?");
+      cFoxEye.SayAt(500, 200, 400, "Hunger. Yes, that's it. What's to eat?");
+      cEgo.SayAt(400, 600, 400, "I ask myself that same question everyday.");
+      cFoxEye.SayAt(500, 200, 400, "I don't suppose it has an answer?");
+      cEgo.SayAt(400, 600, 400, "We'll see I guess.");
+      
+      cEgo.ChangeRoom(1);
+    }
+    else {
+      if (Mouse.Mode == eModeFood) {
+        cFoxEye.SayAt(500, 200, 400, "That is what you call food? You poor sad thing.");
+        cEgo.SayAt(400, 600, 400, "Personally I don't call this food.");
+        cEgo.SayAt(400, 600, 400, "But it's as close as it gets.");
+        cFoxEye.SayAt(500, 200, 400, "Well, nevertheless I'm not eating that.");
+        cFoxEye.SayAt(500, 200, 400, "You'll have to try a little harder now won't you.");
+        cEgo.SayAt(400, 600, 400, "Picky, aren't we?");
+      
+        cEgo.ChangeRoom(1);
+      }
+      else if (Mouse.Mode == eModeBible) {
+        cFoxEye.SayAt(500, 200, 400, "What is this?");
+        cEgo.SayAt(400, 600, 400, "It's a very old, very big, very dry book.");
+        cFoxEye.SayAt(500, 200, 400, "Interesting... I have no use for it. I can't eat that.");
+      
+        cEgo.ChangeRoom(1);
+      }
+      else if (Mouse.Mode == eModeBookPillo) {
+        cFoxEye.SayAt(500, 200, 400, "That looks heavy.");
+        cEgo.SayAt(400, 600, 400, "It is.");
+        cFoxEye.SayAt(500, 200, 400, "You're tiring me. Bring me meat.");
+      
+        cEgo.ChangeRoom(1);
+      }
+      else if (Mouse.Mode == eModePillow) {
+        cFoxEye.SayAt(500, 200, 400, "What is this?");
+        cEgo.SayAt(400, 600, 400, "It's a pillow. I use it to rest my head while I sleep.");
+        cFoxEye.SayAt(500, 200, 400, "Interesting... I have no use for it. I can't eat that.");
+      
+        cEgo.ChangeRoom(1);
+      }
+      else {
+        int ran = Random(2);
+        
+        if (ran == 0) {
+          cEgo.SayAt(400, 600, 400, "Can I ask you a question?");
+          cFoxEye.SayAt(500, 200, 400, "Certainly.");
+          cEgo.SayAt(400, 600, 400, "How did you get up there?");
+          cFoxEye.SayAt(500, 200, 400, "I think the more interesting question to be asked is how did you get yourself locked in a cage?");
+          cEgo.SayAt(400, 600, 400, "I don't like to think back on the things I've done.");
+          cFoxEye.SayAt(500, 200, 400, "Nor do I.");
+          cFoxEye.SayAt(500, 200, 400, "Let's eat.");
+        }  
+        else if (ran == 1) {
+          cEgo.SayAt(400, 600, 400, "I'm having trouble finding you something to eat. This place isn't exactly a 4 star restaurant.");
+          cFoxEye.SayAt(500, 200, 400, "The service isn't great either.");
+          cEgo.SayAt(400, 600, 400, "You're quick with the wit.");
+          cFoxEye.SayAt(500, 200, 400, "A fox must be to survive.");
+        }
+        else if (ran == 2) {
+          cFoxEye.SayAt(500, 200, 400, "What do you do for fun in this place.");
+          cEgo.SayAt(400, 600, 400, "The other inmates can play board games, or excercise.");
+          cEgo.SayAt(400, 600, 400, "I'm not granted access to such privileges");
+          cFoxEye.SayAt(500, 200, 400, "Might I ask why?");
+          cEgo.SayAt(400, 600, 400, "You can ask, but I won't answer.");
+          cFoxEye.SayAt(500, 200, 400, "Then I suppose I will save my breath.");
+        }
+      
+        cEgo.ChangeRoom(1);
+      }
+      
+    }
+   
+  }
+  else {
+      cFoxEye.SayAt(500, 200, 400, "Something dead. Oh boy!");
+      cEgo.SayAt(400, 600, 400, "I made a great big mess you know. So you better enjoy it.");
+      cFoxEye.SayAt(500, 200, 400, "I suppose you're right. Effort like that deserves a reward.");
+      cEgo.SayAt(400, 600, 400, "Ooh, are you going to turn my bed into a pumpkin carriage?");
+      cFoxEye.SayAt(500, 200, 400, "Better.");
+      
+      cEgo.ChangeRoom(1);
+  }
+
+}
+
+function room_Load()
+{
+  Mouse.Visible = false;
+  cEgo.ChangeView(10);
+  cEgo.SpeechView = 10;
+  cFoxEye.Animate(0, 5, eRepeat, eNoBlock);
+}
+
+function room_Leave()
+{
+  Mouse.Visible = true;
+  cEgo.UnlockView();
+  cEgo.ChangeView(1);
+  cEgo.SpeechView = 3;
+  hasTalkedToFox = true;
+  
+  if(hasKilledMouse == true) {
+    timeToLeave = true;
+  }
+}
+
+function room_FirstLoad()
+{
+  
+}
+

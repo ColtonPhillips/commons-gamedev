@@ -1,0 +1,706 @@
+
+
+function room_AfterFadeIn()
+{
+  if (isStartGame == true) {
+    cEgo.Say("This Adventure Game Prototype was made for Orca Jam 2010.");
+    cEgo.Say("Credits:");
+    cEgo.Say("Colton Phillips - Technical art, game design, programming, writing.");
+    cEgo.Say("Jace Matthews - Art, writing");
+    cEgo.Say("Additional writing by Laine Dalpe");
+    cEgo.Say("Controls:");
+    cEgo.Say("Right click to scroll through actions, left click to use action");
+    cEgo.Say("'ESC' to quit game");
+    isStartGame = false;
+  }
+  
+  cFoxTail.LockView(8);
+  cFoxTail.Animate(0, 5, eRepeat, eNoBlock);
+  
+  if (timeToLeave == true) {
+    object[3].Visible = false;
+    object[6].Visible = true;
+    object[6].SetView(9);
+    object[6].Animate(0, 5, eOnce, eBlock, eForwards);
+    cEgo.Walk(645, 610, eBlock, eWalkableAreas);
+    cEgo.FaceLocation(cEgo.x, cEgo.y-1);
+    
+    cEgo.Say("Curiouser and curiouser...");
+    QuitGame(0);
+  }
+  
+  
+}
+
+function oMouseHole_Look()
+{
+  cEgo.FaceObject(object[3]);
+  cEgo.Say("The vermin are the only things that eat well in this place.");
+}
+
+function oBible_Look()
+{
+  cEgo.FaceObject(object[0]);
+  cEgo.Say("The Bible. They tell me I'm supposed to read it.");
+  cEgo.Say("I use it to wipe my ass.");
+}
+
+function oFood_Look()
+{
+  cEgo.FaceObject(object[1]);
+  cEgo.Say("Something that loosley resembles meat and... I don't think I want to know what else.");
+}
+
+function room_Load()
+{
+  if (hasFoodBeenPassed == true) {
+    object[1].Visible = true;
+  }
+}
+
+function hToilet_Look()
+{
+  cEgo.Say("Ew.");
+}
+
+function hSink_Look()
+{
+  cEgo.Say("It hasn't been working.");
+  cEgo.Say("I asked the guard to get it fixed, so he spit on me.");
+}
+
+function oPillow_Look()
+{
+  cEgo.Say("At least I don't have to worry about losing my ear in my sleep now.");
+}
+
+function hBed_Look()
+{
+  cEgo.Say("Have you ever laid in a haystack?");
+  cEgo.Say("Me neither, but this bed's uncomfortable.");
+}
+
+function hDoor_Look()
+{
+  cEgo.Say("The door is locked from the outside.");
+  cEgo.Say("As well it should be.");
+}
+
+function oFoodHole_Look()
+{
+  cEgo.Say("Out of this flap comes what they like to call 'food'");
+  cEgo.Say("And what I like to call 'I'd rather starve'.");
+}
+
+function oPeepHole_Look()
+{
+  if (hasTalkedToGuard == false){
+    cEgo.Say("The slot only opens from the outside. Go figure.");
+  }
+  else {
+    cEgo.Say("I don't think he likes me very much.");
+  }
+
+}
+
+function oBible_Interact()
+{
+  cEgo.Walk(290, 680, eBlock, eWalkableAreas);
+  cEgo.FaceLocation(cEgo.x-1, cEgo.y);
+  cEgo.Say("This thing is heavy enough to kill someone with.");
+  cEgo.LockView(2);
+  cEgo.Animate(2, 5, eOnce, eBlock);
+  object[0].Visible = false;
+  cEgo.UnlockView();
+  cEgo.FaceLocation(cEgo.x-1, cEgo.y);
+  Mouse.EnableMode(eModeBible);
+  
+}
+
+function oPillow_PickUp()
+{
+  cEgo.Say("I don't really pray.");
+}
+
+function oPillow_Interact()
+{
+  cEgo.Walk(720, 560, eBlock, eWalkableAreas);
+  cEgo.FaceLocation(cEgo.x+1, cEgo.y);
+  cEgo.Say("Yoink.");
+  cEgo.LockView(2);
+  cEgo.Animate(1, 5, eOnce, eBlock);
+  object[5].Visible = false;
+  object[7].Visible = true;
+  cEgo.UnlockView();
+  cEgo.FaceLocation(cEgo.x+1, cEgo.y);
+  Mouse.EnableMode(eModePillow);
+}
+
+function oPillowCase_Look()
+{
+  cEgo.Say("If I ever need to itch someone to death, this should do it.");
+  cEgo.Say("I'm not touching it unless I have to.");
+}
+
+function oFood_Interact()
+{
+  
+  if (hasPickedUpFood == false) {
+    cEgo.Walk(330, 590, eBlock, eWalkableAreas);
+    cEgo.FaceLocation(cEgo.x+1, cEgo.y);
+    cEgo.Say("I can't believe I'm touching this.");
+    cEgo.LockView(2);
+    cEgo.Animate(3, 5, eOnce, eBlock);
+    cEgo.UnlockView();
+    cEgo.FaceLocation(cEgo.x+1, cEgo.y);
+    Mouse.EnableMode(eModeFood);
+    hasPickedUpFood = true;
+  }
+  else {
+    cEgo.Say("That's okay. I'm not touching it again. My fingers are already burning.");
+  }
+}
+
+function oPeepHole_Interact()
+{
+  cEgo.Walk(420, 500, eBlock, eWalkableAreas);
+  cEgo.FaceLocation(cEgo.x + 1, cEgo.y);
+  if (hasTalkedToGuard == false) {
+    cEgo.Say("This should get the guard's attention.");
+    cEgo.LockView(2);
+    cEgo.FaceLocation(cEgo.x+1, cEgo.y);
+    cEgo.Animate(0, 2, eOnce, eBlock, eForwards);
+    cEgo.UnlockView();
+    cEgo.FaceLocation(cEgo.x+1, cEgo.y);
+    cEgo.ChangeRoom(2);
+  }
+  else {
+    cEgo.Say("I think If I do that again they will put me in an even smaller box.");
+  }
+  
+}
+
+function hWindow_Look()
+{
+  if (hasTalkedToFox == false){
+    cEgo.Say("I think something's trying to get my attention.");
+  }
+  else {
+    cEgo.Say("How the hell did he get up there...");
+  }
+  
+}
+
+function hWindow_Interact()
+{
+  cEgo.Walk(290, 640, eBlock, eWalkableAreas);
+  cEgo.ChangeRoom(3);
+}
+
+function oPillowCase_PickUp()
+{
+  cEgo.Walk(720, 560, eBlock, eWalkableAreas);
+  cEgo.FaceLocation(cEgo.x+1, cEgo.y);
+  cEgo.Say("Hmm.");
+  cEgo.Say("Step 1.");
+  cEgo.Say("Put heavy object into pillowcase.");
+  cEgo.Say("Step 2.");
+  cEgo.Say("Mayhem ensues.");
+  cEgo.LockView(2);
+  cEgo.Animate(1, 5, eOnce, eBlock);
+  object[7].Visible = false;
+  cEgo.UnlockView();
+  cEgo.FaceLocation(cEgo.x+1, cEgo.y);
+  Mouse.EnableMode(eModeBookPillo);
+  Mouse.DisableMode(eModeBible);
+}
+
+function hWindow_Talk()
+{
+  cEgo.Walk(290, 640, eBlock, eWalkableAreas);
+  cEgo.ChangeRoom(3);
+}
+
+function oMouseHole_Food() {
+  cEgo.Walk(580, 570, eBlock, eWalkableAreas);
+  cEgo.FaceLocation(cEgo.x+1, cEgo.y);
+  cEgo.Say("Come out.");
+  cEgo.LockView(2);
+  cEgo.Animate(3, 5, eOnce, eBlock);
+  object[8].Visible = true;
+  cEgo.UnlockView();
+  cEgo.FaceLocation(cEgo.x+1, cEgo.y);
+  Mouse.DisableMode(eModeFood);
+  hasPlacedFood = true;
+}
+
+function hMouseArea_WalkOn()
+{
+  isOnHotspot = true;
+}
+
+function room_RepExec()
+{
+  if (hasKilledMouse == false) {
+    if((isOnHotspot == true) && (hasPlacedFood == true))
+    {
+      if ((cMouse.x != 660) || (cMouse.y != 510)) {
+        cMouse.Walk(660, 510, eBlock, eAnywhere);
+      }
+    }
+  
+  
+    if ((isOnHotspot == false) && (hasPlacedFood == true)){
+      if ((cMouse.x != 680) || (cMouse.y != 560)) {
+        cMouse.Walk(680, 560, eBlock, eAnywhere);
+      }
+    }
+  isOnHotspot = false;
+  }
+  else {
+    
+  }
+ 
+  
+}
+
+function hDoor_Interact()
+{
+  oPeepHole_Interact();
+}
+
+function oMush_PickUp()
+{
+  cEgo.Say("I'd love to crush the little critter with this, but I can't get close enough.");
+}
+
+function oMush_AnyClick()
+{
+  if (Mouse.Mode == eModePillow) {
+    cEgo.Walk(540, 550, eBlock, eWalkableAreas);
+    if ((cMouse.x != 680) || (cMouse.y != 560)) {
+        cMouse.Walk(680, 560, eBlock, eAnywhere);
+    }
+    cEgo.LockView(5);
+    cEgo.Animate(0, 5, eOnce, eBlock);
+    cEgo.UnlockView();
+    cEgo.FaceCharacter(cMouse, eBlock);
+    cEgo.Say("Well...");
+    cEgo.Say("I reached him, but it didn't hurt him. I guess I'm not as strong as I thought I was.");
+    cEgo.Say("Maybe if I find something heavier than a pillow.");
+  }
+}
+
+function oMush_BookPillo()
+{
+  //end of game!!!
+  
+  cEgo.Walk(540, 550, eBlock, eWalkableAreas);
+  cEgo.FaceCharacter(cMouse, eBlock);
+  cEgo.Say("This isn't going to be pretty.");
+  if ((cMouse.x != 680) || (cMouse.y != 560)) {
+        cMouse.Walk(680, 560, eBlock, eAnywhere);
+  }
+  cEgo.LockView(5);
+  cEgo.Animate(0, 5, eOnce, eBlock);
+  cEgo.UnlockView();
+  cEgo.FaceLocation(cEgo.x+1, cEgo.y, eBlock);
+  hasKilledMouse = true;
+  cMouse.ChangeRoom(0, 1, 1);
+  object[8].Visible = false;
+  object[9].Visible = true;
+  cEgo.Walk(600,560, eBlock, eAnywhere);
+  cEgo.Say("Gross.");
+  cEgo.LockView(2);
+  cEgo.Animate(3, 5, eOnce, eBlock, eForwards);
+  cEgo.UnlockView();
+  cEgo.FaceLocation(cEgo.x+1, cEgo.y);
+  object[9].Visible = false;
+  cEgo.Walk(230, 600, eBlock, eWalkableAreas);
+  cEgo.ChangeRoom(3);
+}
+
+function oPeepHole_Talk()
+{
+  cEgo.Walk(420, 500, eBlock, eWalkableAreas);
+  cEgo.FaceLocation(cEgo.x + 1, cEgo.y);
+  if (hasTalkedToGuard == false){
+    cEgo.Say("Hello?");
+    cEgo.Say("Hey!");
+    cEgo.Say("Ugh. The guard is probably sleeping again.");
+  }
+  else {
+    cEgo.Say("Hey Murray!");
+    cEgo.ChangeRoom(2);
+    
+  }
+}
+
+function hToilet_Food()
+{
+  cEgo.Say("I don't want to. That's actually really gross.");
+}
+
+function hWindow_Food()
+{
+  cEgo.Walk(290, 640, eBlock, eWalkableAreas);
+  cEgo.ChangeRoom(3);
+}
+
+function hToilet_PickUp()
+{
+  cEgo.Say("Maybe I can cast out whatever demons are living in this thing.");
+}
+
+function hToilet_Mode8()
+{
+  cEgo.Say("What the hell would that accomplish? Not much. I'm not doing that.");
+}
+
+function hToilet_Interact()
+{
+  cEgo.Say("Oh it does flush... I guess the previous resident just chose not to.");
+}
+
+function hToilet_Talk()
+{
+  cEgo.Say("He's not a good conversationalist. He hogs the attention.");
+}
+
+function hSink_PickUp()
+{
+  cEgo.Say("I wish I could turn this water into wine. Maybe it would make this place a little more bearable.");
+}
+
+function hSink_Mode8()
+{
+  cEgo.Say("It doesn't work. And I don't really want to get my few meager possessions wet.");
+}
+
+function hSink_Mode9()
+{
+  cEgo.Say("That's not going to make whatever this gruel is made of edible.");
+}
+
+function hSink_Interact()
+{
+  cEgo.Say("It doesn't work.");
+}
+
+function hDoor_PickUp()
+{
+  cEgo.Walk(420, 500, eBlock, eWalkableAreas);
+  cEgo.FaceLocation(cEgo.x + 1, cEgo.y);
+  if (hasTalkedToGuard == false){
+    cEgo.Say("Hello?");
+    cEgo.Say("Hey!");
+    cEgo.Say("Ugh. The guard is probably sleeping again.");
+  }
+  else {
+    cEgo.Say("Hey Murray!");
+    cEgo.ChangeRoom(2);
+    
+  }
+}
+
+function hDoor_Mode8()
+{
+  cEgo.Say("I don't really want to show off my makeshift weapons to Murray.");
+}
+
+function hSink_Talk()
+{
+  cEgo.Say("Hi Sink!");
+}
+
+function hDoor_Mode9()
+{
+  cEgo.Walk(420, 500, eBlock, eWalkableAreas);
+  cEgo.FaceLocation(cEgo.x + 1, cEgo.y);
+  if (hasTalkedToGuard == false){
+    cEgo.Say("Hello?");
+    cEgo.Say("Hey!");
+    cEgo.Say("Ugh. The guard is probably sleeping again.");
+  }
+  else {
+    cEgo.Say("Hey Murray!");
+    cEgo.ChangeRoom(2);
+    
+  }
+}
+
+function hDoor_Talk()
+{
+  oPeepHole_Talk();
+}
+
+function hBed_PickUp()
+{
+  cEgo.Say("In the name of the lord I cast you bed bugs out. Be gone!");
+}
+
+function hBed_Mode8()
+{
+  cEgo.Say("To what ends?");
+}
+
+function hBed_Mode9()
+{
+  cEgo.Say("It's not comfortable, but I don't really want it to smell as well.");
+}
+
+function hBed_Interact()
+{
+  cEgo.Say("I'm not tired.");
+}
+
+function hBed_Talk()
+{
+  cEgo.Say("Broken. Evil. Deathslab.");
+}
+
+function hWindow_PickUp()
+{
+  cEgo.Walk(290, 640, eBlock, eWalkableAreas);
+  cEgo.ChangeRoom(3);
+}
+
+function hWindow_Mode8()
+{
+  cEgo.Walk(290, 640, eBlock, eWalkableAreas);
+  cEgo.ChangeRoom(3);
+}
+
+function oBible_Mode9()
+{
+  cEgo.Say("This was probably written when the crops for this slop were harvested.");
+}
+
+function oBible_Talk()
+{
+  cEgo.Say("And on the fifth day god made the gideons put this book in every uncomfortable place in the world.");
+  cEgo.Say("Hotels, hospitals, and prisons...");
+}
+
+function oFood_PickUp()
+{
+  cEgo.Say("I think there's more meat in the leather bindings of this book than in this gruel.");
+}
+
+function oFood_Mode8()
+{
+  cEgo.Say("I'm trying to get him food. Not make a huge mess.");
+}
+
+function oFood_Mode9()
+{
+  cEgo.Say("I'm not putting it back. That's just silly.");
+}
+
+function oFoodHole_PickUp()
+{
+  cEgo.Say("It's a perfect fit. Too bad my food portions weren't the size of this.");
+  cEgo.Say("I'm not putting it through. I want to keep it.");
+}
+
+function oFoodHole_Mode8()
+{
+  cEgo.Say("To what ends?");
+}
+
+function oFoodHole_Mode9()
+{
+  cEgo.Say("Last time I played that game Murray bear maced me.");
+}
+
+function oFoodHole_Interact()
+{
+  cEgo.Say("I've spent countless hours pushing this little flap back and forth. It's pretty fun.");
+}
+
+function oFoodHole_Talk()
+{
+  cEgo.Say("Gruel comes in. Gruel goes out.");
+}
+
+function oMouseHole_PickUp()
+{
+  cEgo.Say("I don't think that particular mouse is of the right faith.");
+}
+
+function oMouseHole_Mode8()
+{
+  cEgo.Say("I can't get at him when he is in there.");
+}
+
+function oMouseHole_Interact()
+{
+  cEgo.Say("There's definately a mouse in there. I hear him chattering all the time.");
+}
+
+function oMouseHole_Talk()
+{
+  cEgo.Say("There's definately a mouse in there. I hear him chattering all the time.");
+}
+
+function oPeepHole_PickUp()
+{
+  hDoor_PickUp();
+}
+
+function oPeepHole_Mode8()
+{
+  hDoor_Mode8();
+}
+
+function oPeepHole_Mode9()
+{
+  hDoor_Mode9();
+}
+
+function oPillow_Mode9()
+{
+  cEgo.Say("I don't want this stuff anywhere near my face, or my pillow.");
+}
+
+function oPillow_Talk()
+{
+  cEgo.Say("This will come in handy if I have to pillow fight someone to death.");
+}
+
+function oPillowCase_Mode9()
+{
+  cEgo.Say("Well, they both have the same odor. Sour milk.");
+}
+
+function oPillowCase_Interact()
+{
+  cEgo.Say("I could put it on my head and run around the room for fun. But I won't.");
+}
+
+function oPillowCase_Talk()
+{
+  cEgo.Say("Some of the other inmates put heavy objects in these guys to beat the shit out of eachother.");
+  cEgo.Say("Whatever passes the day.");
+}
+
+function oMush_Interact()
+{
+  cEgo.Say("I can't get close enough to pick him up. He just runs away.");
+}
+
+function oMush_Look()
+{
+  cEgo.Say("The little guy loves the stuff. Poor thing.");
+}
+
+function oMush_Talk()
+{
+  cEgo.Say("Hey buddy. Come here. I'll pet you.");
+  cEgo.Say("He's not falling for it. Better think of something else.");
+}
+
+function oFood_Talk()
+{
+  cEgo.Say("Sometimes when I see this gruel, I wonder If I really deserve to eat it.");
+  cEgo.Say("Unfortunately, I do.");
+}
+
+function oPillowCase_AnyClick()
+{
+  if (Mouse.Mode == eModePillow) {
+    cEgo.Say("I'm not putting it back. After all that effort used taking it out. That's just ridiculous!");
+  }
+}
+
+function oBible_AnyClick()
+{
+  if (Mouse.Mode == eModePillow) {
+    cEgo.Say("What would that accomplish?");
+  }
+}
+
+function oFood_AnyClick()
+{
+  if (Mouse.Mode == eModePillow) {
+    cEgo.Say("You know, I use this thing to sleep on, not eat off of.");
+  }
+}
+
+function oFoodHole_AnyClick()
+{
+  if (Mouse.Mode == eModePillow) {
+    cEgo.Say("It fits, but if I put it through there, I might never get it back.");
+  }
+}
+
+function oMouseHole_AnyClick()
+{
+  if (Mouse.Mode == eModePillow) {
+    cEgo.Say("To what ends?");
+  }
+}
+
+function oPeepHole_AnyClick()
+{
+  if (Mouse.Mode == eModePillow) {
+    cEgo.Walk(420, 500, eBlock, eWalkableAreas);
+    cEgo.FaceLocation(cEgo.x + 1, cEgo.y);
+    if (hasTalkedToGuard == false){
+      cEgo.Say("Hello?");
+      cEgo.Say("Hey!");
+      cEgo.Say("Ugh. The guard is probably sleeping again.");
+    }
+    else {
+      cEgo.Say("Hey Murray!");
+      cEgo.ChangeRoom(2);
+    }
+  }
+}
+
+function hToilet_AnyClick()
+{
+  if (Mouse.Mode == eModePillow) {
+    cEgo.Say("I prefer my pillow dry.");
+  }
+}
+
+function hSink_AnyClick()
+{
+  if (Mouse.Mode == eModePillow) {
+    cEgo.Say("To what ends?");
+  }
+}
+
+function hBed_AnyClick()
+{
+  if (Mouse.Mode == eModePillow) {
+    cEgo.Say("Hmm.");
+  }
+}
+
+function hDoor_AnyClick()
+{
+  if (Mouse.Mode == eModePillow) {
+    cEgo.Walk(420, 500, eBlock, eWalkableAreas);
+    cEgo.FaceLocation(cEgo.x + 1, cEgo.y);
+    if (hasTalkedToGuard == false){
+      cEgo.Say("Hello?");
+      cEgo.Say("Hey!");
+      cEgo.Say("Ugh. The guard is probably sleeping again.");
+    }
+    else {
+      cEgo.Say("Hey Murray!");
+      cEgo.ChangeRoom(2);
+    }
+  }
+}
+
+function hWindow_AnyClick()
+{
+  if (Mouse.Mode == eModePillow) {
+    cEgo.Walk(290, 640, eBlock, eWalkableAreas);
+    cEgo.ChangeRoom(3);
+  }
+}
+

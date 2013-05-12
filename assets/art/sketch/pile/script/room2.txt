@@ -1,0 +1,93 @@
+// room script file
+
+function room_FirstLoad()
+{
+}
+
+function room_Load()
+{
+  Mouse.Visible = false;
+  cEgo.ChangeView(10);
+  cEgo.SpeechView = 10;
+  cGuard.LockView(6);
+  cGuard.Animate(0, 4, eRepeat, eNoBlock, eForwards);
+}
+
+function room_Leave()
+{
+  Mouse.Visible = true;
+  cEgo.UnlockView();
+  hasFoodBeenPassed = true;
+  cEgo.ChangeView(1);
+  cEgo.SpeechView = 3;
+}
+
+function room_AfterFadeIn()
+{
+  if (hasTalkedToGuard == false) {
+    cGuard.SayAt(500, 200, 400, "What the hell is all this racket!?");
+    cEgo.SayAt(400, 600, 400, "How's Cell Block D today Murray?");
+    cGuard.SayAt(500, 200, 400, "What the hell did I tell you about calling me that?");
+    cEgo.SayAt(400, 600, 400, "I can't recall. I was drunk at the time. We both were. Remember the toilet wine?");
+    cGuard.SayAt(500, 200, 400, "Did you call me here just to harrass the hell out of me?");
+    cEgo.SayAt(400, 600, 400, "Well, no. That's just an added bonus.");
+    cEgo.SayAt(400, 600, 400, "I was looking to get some food.");
+    cGuard.SayAt(500, 200, 400, "What the hell are you up to?");
+    cEgo.SayAt(400, 600, 400, "What? Can't a guy just be hungry?");
+    cGuard.SayAt(500, 200, 400, "Yes, and you can stay that way for all I care.");
+    cEgo.SayAt(400, 600, 400, "Oh come on. Feeding time is your favorite.");
+    cEgo.SayAt(400, 600, 400, "All that pleading for mercy.");
+    cGuard.SayAt(500, 200, 400, "If it were up to me, you'd be dead'r than hell.");
+    cEgo.SayAt(400, 600, 400, "Aww, You know you'd miss me too much.");
+    cGuard.SayAt(500, 200, 400, "Like hell I would. People like you, after what you've done...");
+    cGuard.SayAt(500, 200, 400, "People like you make me sick to my stomach.");
+    cGuard.SayAt(500, 200, 400, "Will you shut up if I feed you?");
+    cEgo.SayAt(400, 600, 400, "There's only one way to find out.");
+    cGuard.SayAt(500, 200, 400, "Here's your food. Now shut up.");
+    cEgo.SayAt(400, 600, 400, "Have a nice day Murray.");
+    cGuard.SayAt(500, 200, 400, "Eat shit.");
+    hasTalkedToGuard = true;
+  }
+  else {
+    if (Mouse.Mode == eModeBible) {
+      cEgo.SayAt(400, 600, 400, "Can I get this exchanged for the Qur'an?");
+      cGuard.SayAt(500, 200, 400, "Why don't you leave me alone for one day?");
+      cEgo.SayAt(400, 600, 400, "Bring me something worth reading and maybe I'll have something to do in here.");
+      cGuard.SayAt(500, 200, 400, "You get what you deserve, and you don't deserve a damn thing.");
+      cEgo.SayAt(400, 600, 400, "You know, you're kind of an asshole.");
+      cGuard.SayAt(500, 200, 400, "Yah, well at least I don't shit and sleep in the same room.");
+      cEgo.SayAt(400, 600, 400, "Touche.");
+    }
+    else if (Mouse.Mode == eModeFood) {
+      cGuard.SayAt(500, 200, 400, "What's the matter? This food not good enough for you?");
+      cEgo.SayAt(400, 600, 400, "I think it's corrosive.");
+      cGuard.SayAt(500, 200, 400, "Shut up and eat.");
+    }
+    else if (Mouse.Mode == eModePillow) {
+      cGuard.SayAt(500, 200, 400, "What the hell do you want?");
+      cEgo.SayAt(400, 600, 400, "I wan't a new pillow. This one smells funny.");
+      cGuard.SayAt(500, 200, 400, "It smells like you.");
+      cEgo.SayAt(400, 600, 400, "About that, when is the next time I get to shower.");
+      cGuard.SayAt(500, 200, 400, "Let me see, what day is it?");
+      cEgo.SayAt(400, 600, 400, "Friday.");
+      cGuard.SayAt(500, 200, 400, "Well, you're supposed to shower today, but I just started a movie.");
+      cGuard.SayAt(500, 200, 400, "So I guess the next time is in two weeks.");
+      cEgo.SayAt(400, 600, 400, "Fantastic.");
+    }
+    else {
+      cGuard.SayAt(500, 200, 400, "I bet you think this is a hell of a cute little game you're playing here.");
+      cEgo.SayAt(400, 600, 400, "Oh I dunno. Yeah I figure it's pretty cute.");
+      cGuard.SayAt(500, 200, 400, "What is it? Food too cold?");
+      cGuard.SayAt(500, 200, 400, "This ain't a bed and breakfast you know.");
+      cEgo.SayAt(400, 600, 400, "Could have fooled me with such great hospitality around here.");
+      cEgo.SayAt(400, 600, 400, "Wait. Did you just not say 'hell'?");
+      cEgo.SayAt(400, 600, 400, "What's the date? I have to remember this day.");
+      cGuard.SayAt(500, 200, 400, "It's the 5th of 'Stay the hell away from this door for the next 3 days or I'll beat you into a fine paste'.");
+      cEgo.SayAt(400, 600, 400, "Hmm... They must have added that to the calender since I've been away.");
+    }
+
+  }
+  
+  cEgo.ChangeRoom(1);
+}
+
