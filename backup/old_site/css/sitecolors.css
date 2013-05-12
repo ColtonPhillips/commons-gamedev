@@ -1,0 +1,164 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body,td,th {
+	font-family: "Lucida Console", Monaco, monospace;
+	color: #000;
+	white-space: pre;
+}
+body {
+	background-color: #66ccff;
+	background-image:url(../img/grasstile.gif);
+	background-attachment:fixed;
+	background-position:bottom;
+	background-repeat:repeat-x;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 25px;
+}
+a:link {
+	color: #e31c3d;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #000;
+}
+a:hover {
+	text-decoration: underline;
+	color: #e31c3d;
+}
+a:active {
+	text-decoration: none;
+	color: #e31c3d;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-family: "Book Antiqua", Palatino, serif;
+}
+.AchievementBox1 {
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 10px;
+	color: #000;
+	background-color: #FFF;
+	border: 1px none #CCC;
+	padding: 3px;
+	height: 12px;
+	width: 220px;
+	clear: left;
+	float: left;
+}
+.Screenshot1 {
+	background-color: #000;
+	height: 128px;
+	width: 128px;
+	border-top-width: 3px;
+	border-right-width: 3px;
+	border-bottom-width: 3px;
+	border-left-width: 3px;
+	border-top-color: #0FF;
+	border-right-color: #0FF;
+	border-bottom-color: #0FF;
+	border-left-color: #0FF;
+	margin-left: 5px;
+	float: left;
+	clear: left;
+}
+.AuthorBox1 {
+	background-color: #FFF;
+	border: 1px double #CCC;
+	float: right;
+	clear: none;
+	padding: 15px;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	font-weight: bold;	
+}
+.DescBox1 {
+	font-family: "Lucida Console", Monaco, monospace;
+	background-color: #FFF;
+	clear: right;
+	float: right;
+	width: 400px;
+	border: 2px double #CCC;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	padding: 20px;
+}
+
+.AchievementBox2 {
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 10px;
+	color: #000;
+	background-color: #FFF;
+	border: 1px none #CCC;
+	padding: 3px;
+	height: 12px;
+	width: 220px;
+	clear: right;
+	float: right;
+}
+.Screenshot2 {
+	background-color: #000;
+	height: 128px;
+	width: 128px;
+	margin-left: 5px;
+	float: right;
+	clear: right;
+	border: 3px dotted #0FF;
+}
+.AuthorBox2 {
+	background-color: #FFF;
+	border: 1px double #CCC;
+	float: left;
+	clear: none;
+	padding: 15px;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	font-weight: bold;	
+}
+.DescBox2 {
+	font-family: "Lucida Console", Monaco, monospace;
+	background-color: #FFF;
+	clear: left;
+	float: left;
+	width: 400px;
+	border: 2px double #CCC;
+	border-radius: 20px;
+	-moz-border-radius: 20px;
+	padding: 20px;
+}
+#TableCenter {
+	padding: 10px;
+	border-radius: 5px;
+	background-image: url(img/transpbg.png);
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+}.DescBox {
+	float: left;
+	height: auto;
+	margin-top: 50px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding: 10px;
+	border: 2px dotted #000;
+	clear: both;
+	width: 100%;
+}
+.ImageLeft {
+	text-align: center;
+	white-space: pre;
+	background-color:#FFF;
+	float: left;
+	width: 200px;
+	overflow: hidden;
+	webkit-borderradius: 2;
+	margin: 10px;
+}

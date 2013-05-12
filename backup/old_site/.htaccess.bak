@@ -1,0 +1,5 @@
+IndexIgnore *
+
+RewriteEngine On
+RewriteBase /
+RewriteRule ^downloads/bundle1/?$ /beyamor/downloads/holy-fuck-man.php

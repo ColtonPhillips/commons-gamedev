@@ -1,0 +1,32 @@
+/* line 3, ../src/gallery.scss */
+#gallery {
+  text-align: center;
+  overflow: auto;
+}
+
+/* line 9, ../src/gallery.scss */
+.gallery-entry {
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+}
+/* line 14, ../src/gallery.scss */
+.gallery-entry .thumbnail {
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 20, ../src/gallery.scss */
+.gallery-entry .info {
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 280px;
+  /* why not */
+  overflow: hidden;
+}
+/* line 30, ../src/gallery.scss */
+.gallery-entry .info .section {
+  font-weight: bold;
+}

@@ -1,0 +1,46 @@
+/* line 18, ../src/core.scss */
+body {
+  background-color: #66ccff;
+  background-image: url(/img/grasstile.gif);
+  background-attachment: fixed;
+  background-position: bottom;
+  background-repeat: repeat-x;
+  color: white;
+  font-family: 'courier new';
+}
+
+/* line 31, ../src/core.scss */
+#main {
+  width: 900px;
+  min-height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: black;
+  border-radius: 15px;
+}
+
+/* line 40, ../src/core.scss */
+#main-wrapper {
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 46, ../src/core.scss */
+#content {
+  padding-right: 30px;
+  padding-left: 30px;
+  border-color: #666;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-right-style: none;
+  border-right-width: 1px;
+}
+
+/* line 65, ../src/core.scss */
+#footer {
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 20px;
+  font-size: small;
+}

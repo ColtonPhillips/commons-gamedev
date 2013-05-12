@@ -1,0 +1,41 @@
+/* line 1, ../src/gallery.scss */
+#gallery {
+  text-align: center;
+  overflow: auto;
+}
+
+/* line 7, ../src/gallery.scss */
+.game-container {
+  width: 33%;
+  margin: 0px;
+  border-width: 0px;
+  padding: 0px;
+  float: left;
+  display: inline-block;
+}
+
+/* line 17, ../src/gallery.scss */
+.game {
+  width: 150;
+  height: 150px;
+  display: inline-block;
+  font-size: small;
+  text-align: center;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+/* line 34, ../src/gallery.scss */
+.game div {
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+}
+/* line 41, ../src/gallery.scss */
+.game .screenshot-thumbnail-wrapper {
+  width: 150px;
+  height: 112px;
+}
